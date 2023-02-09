@@ -1,16 +1,9 @@
-# 🚨 NOTE 🚨
-**October 2022**
-
-This template has been deprecated in favor of a more modern version using Vite. You can find it here: https://github.com/ourcade/phaser3-vite-template
-
----
-
-![phaser3-parceljs-template](https://user-images.githubusercontent.com/2236153/71606463-37a0da80-2b2e-11ea-9b5f-5d26ccc84f91.png)
-
-# Phaser 3 + Parcel Template
-> For people who want to spend time making games instead of configuring build tools.
+# Phaser 3 + TypeScript + Parcel Template
+> For people who want to spend time making Phaser 3 games in TypeScript instead of configuring build tools.
 
 ![License](https://img.shields.io/badge/license-MIT-green)
+
+This is a TypeScript specific fork of [phaser3-parcel-template](https://github.com/ourcade/phaser3-parcel-template).
 
 ## Prerequisites
 
@@ -41,19 +34,19 @@ npm install -g parcel-bundler
 Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/ourcade/phaser3-parcel-template.git
+git clone https://github.com/officialyenum/phaser-game.git
 ```
 
-This will create a folder named `phaser3-parcel-template`. You can specify a different folder name like this:
+This will create a folder named `phaser-game`. You can specify a different folder name like this:
 
 ```bash
-git clone https://github.com/ourcade/phaser3-parcel-template.git my-folder-name
+git clone https://github.com/officialyenum/phaser-game.git my-folder-name
 ```
 
 Go into your new project folder and install dependencies:
 
 ```bash
-cd phaser3-parcel-template # or 'my-folder-name'
+cd  officialyenum/phaser-game # or 'my-folder-name'
 npm install
 ```
 
@@ -78,21 +71,28 @@ Production files will be placed in the `dist` folder. Then upload those files to
     ├── dist
     ├── node_modules
     ├── public
+    │   ├── assets
+    │   │   ├── bomb.png
+    │   │   ├── dude.png
+    │   │   ├── platform.png
+    │   │   ├── sky.png
+    │   │   ├── star.png
     ├── src
     │   ├── scenes
-    │   │   ├── HelloWorldScene.js
+    │   │   ├── GameScene.ts
     │   ├── index.html
-    │   ├── main.js
+    │   ├── main.ts
     ├── package.json
+    ├── tsconfig.json
 ```
 
-The contents of this template is the basic [Phaser3 getting started example](http://phaser.io/tutorials/getting-started-phaser3/part5).
+The contents of this template is the basic [Phaser 3 getting started example](http://phaser.io/tutorials/getting-started-phaser3/part5).
 
-This template assumes you will want to organize your code into multiple files and use modern JavaScript (or TypeScript).
+This template assumes you will want to organize your code into multiple files and use TypeScript.
 
-JavaScript files are intended for the `src` folder. `main.js` is the entry point referenced by `index.html`.
+TypeScript files are intended for the `src` folder. `main.ts` is the entry point referenced by `index.html`.
 
-Other than that there is no opinion on how you should structure your project. There is a `scenes` folder in `src` where the `HelloWorldScene.js` lives but you can do whatever you want.
+Other than that there is no opinion on how you should structure your project. There is a `scenes` folder in `src` where the `GameScene.ts` lives but you can do whatever you want.
 
 ## Static Assets
 
@@ -103,32 +103,24 @@ Example `public` structure:
 ```
     public
     ├── images
-    │   ├── my-image.png
+    │   ├── bomb.png
+    │   ├── dude.png
+    │   ├── platform.png
+    │   ├── sky.png
+    │   ├── star.png
     ├── music
     │   ├── ...
     ├── sfx
     │   ├── ...
 ```
 
-They can then be loaded by Phaser with `this.image.load('my-image', 'images/my-image.png')`.
+They can then be loaded by Phaser with `this.image.load('platform', 'images/platform.png')`.
 
-## Class Properties Support
+## TypeScript ESLint
 
-This template includes class property support out of the box using `@babel/plugin-proposal-class-properties`.
-
-A `.babelrc` is included as well as the use of `babel-eslint` as the parser for ESLint.
-
-# ESLint
-
-This template uses a basic `eslint` set up for code linting to help you find and fix common problems in your JavaScript code.
+This template uses a basic `typescript-eslint` set up for code linting.
 
 It does not aim to be opinionated.
-
-[See here for rules to turn on or off](https://eslint.org/docs/rules/).
-
-## TypeScript
-
-Check out the [phaser3-typescript-parcel-template](https://github.com/ourcade/phaser3-typescript-parcel-template) for a ready-to-use version of this template in TypeScript!
 
 ## Dev Server Port
 
@@ -150,4 +142,4 @@ Change 8000 to whatever you want.
 
 ## License
 
-[MIT License](https://github.com/ourcade/phaser3-parcel-template/blob/master/LICENSE)
+[MIT License](https://github.com/ourcade/phaser3-typescript-parcel-template/blob/master/LICENSE)
