@@ -1,7 +1,10 @@
 import Phaser from 'phaser'
+import * as Colyseus from "colyseus.js";
 
 export default class HelloWorldScene extends Phaser.Scene
-{
+{// get `roomId` from the query string
+    private roomId?: string;
+    private client?: Colyseus.Client; 
     private platforms?: Phaser.Physics.Arcade.StaticGroup;
     private player?: Phaser.Physics.Arcade.Sprite;
     private stars?: Phaser.Physics.Arcade.Group;
@@ -18,6 +21,11 @@ export default class HelloWorldScene extends Phaser.Scene
 		super('hello-world')
 	}
 
+    init()
+    {
+        this.client = new Colyseus.Client('ws://localhost:2567');
+    }
+
 	preload()
     {
         this.load.image('sky', 'assets/sky.png');
@@ -29,8 +37,19 @@ export default class HelloWorldScene extends Phaser.Scene
         });
     }
 
-    create()
+    async create()
     {
+        const room = await this.client?.joinOrCreate('my_room');
+        console.log(room);
+
+        room?.onMessage('keydown', (message)  => {
+            console.log(message);
+        })
+
+        this.input.keyboard.on('keydown',(evt: KeyboardEvent) => {
+            room?.send('keydown', evt.key);
+        })
+        
         this.add.image(400, 300, 'sky');
 
         this.platforms = this.physics.add.staticGroup();

@@ -1,12 +1,14 @@
 // Import demo room handlers
-import { Room, Client } from 'colyseus';
-import { MyRoomState } from "./schema/MyRoomState";
+import { Room, Client } from 'colyseus'
+import { MyRoomState } from "./schema/MyRoomState"
 
 export class MyRoom extends Room {
     onCreate(options: any): void | Promise<any> {
         this.setState(new MyRoomState())
-        this.onMessage("type",(client, message) => {
-
+        this.onMessage("keydown",(client, message) => {
+            this.broadcast('keydown', message, {
+                except: client
+            })
         })
     }
 

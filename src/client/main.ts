@@ -1,6 +1,8 @@
+import 'regenerator-runtime/runtime';
 import Phaser from 'phaser'
 
 import GameScene from './scenes/GameScene'
+
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
@@ -9,8 +11,7 @@ const config: Phaser.Types.Core.GameConfig = {
 	physics: {
 		default: 'arcade',
 		arcade: {
-			gravity: { y: 300 },
-			debug: true
+			gravity: { y: 300 }
 		}
 	},
 	scene: [GameScene]
