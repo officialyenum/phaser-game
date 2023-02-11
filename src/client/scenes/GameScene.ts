@@ -13,6 +13,7 @@ export default class HelloWorldScene extends Phaser.Scene
 
     private score = 0;
     private scoreText?: Phaser.GameObjects.Text;
+    private infoText?: Phaser.GameObjects.Text;
 
     private gameOver = false;
 
@@ -29,12 +30,18 @@ export default class HelloWorldScene extends Phaser.Scene
 	preload()
     {
         this.load.image('sky', 'assets/sky.png');
-        this.load.image('ground', 'assets/platform.png');
-        this.load.image('star', 'assets/star.png');
-        this.load.image('bomb', 'assets/bomb.png');
-        this.load.spritesheet('dude','assets/dude.png',{
-            frameWidth:32, frameHeight:48
-        });
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            this.infoText = this.add.text(350,200,`Only Desktop Devices are Allowed`,{ fontSize: '16px', color: '#fff' });
+		}else if(/Opera Mini/i.test(navigator.userAgent)){
+            this.infoText = this.add.text(350,200,`Only Desktop Devices are Allowed`,{ fontSize: '16px', color: '#fff' });
+		}else{
+            this.load.image('ground', 'assets/platform.png');
+            this.load.image('star', 'assets/star.png');
+            this.load.image('bomb', 'assets/bomb.png');
+            this.load.spritesheet('dude','assets/dude.png',{
+                frameWidth:32, frameHeight:48
+            });
+        }
     }
 
     async create()
@@ -126,7 +133,7 @@ export default class HelloWorldScene extends Phaser.Scene
         const star = s as Phaser.Physics.Arcade.Image;
         star.disableBody(true, true);
 
-        this.score += 10;
+        this.score += 1;
         this.scoreText?.setText(`Score : ${this.score}`);
 
         if (this.stars?.countActive(true) === 0) {
@@ -170,7 +177,7 @@ export default class HelloWorldScene extends Phaser.Scene
             this.player?.anims.play('turn');
         }
 
-        if (this.cursors.up.isDown && this.player?.body.touching.down)
+        if (this.cursors.space.isDown && this.player?.body.touching.down)
         {
             this.player?.setVelocityY(-330);
         }
